@@ -85,6 +85,12 @@ Allow
 - Custom TCP 123
 - Custom TCP 2200
 
+#### Postgresql Config
+- add flaskdb as psql role
+- create itemcatalog database
+- initialize flaskdb with password
+- run populate.py with flaskdb to populate with demo data
+
 ### Resources
 http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/firstconnect.html
 https://www.compose.com/articles/using-postgresql-through-sqlalchemy/
