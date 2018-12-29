@@ -9,22 +9,22 @@ http://54.236.86.84.xip.io/
 ### Installed Software
 #### Linux (apt-get)
 - finger
--mod-wsgi
--libapache2-mos-wsgi-py3
--apache2
--python3-pip
--python3-venv
--postgresql
--postgresql-contrib
+- mod-wsgi
+- libapache2-mos-wsgi-py3
+- apache2
+- python3-pip
+- python3-venv
+- postgresql
+- postgresql-contrib
 
 #### Python (pip)
--flask
--sqlalchemy
--google-api-python-client
--oauth2client
--google_auth_oauthlib
--cryptography --upgrade
--psycopg2
+- flask
+- sqlalchemy
+- google-api-python-client
+- oauth2client
+- google_auth_oauthlib
+- cryptography --upgrade
+- psycopg2
 ### Configurations
 
 ### Resources
