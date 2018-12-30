@@ -28,6 +28,8 @@ http://54.236.86.84.xip.io/
 ### Configurations
 #### /etc/ssh/sshd_config
 - Change SSH port from 22 to 2200
+- PermitRootLogin no
+- PasswordAuthentication no
 
 #### Uncomplicated Firewall (UFW)
 - default deny incoming
