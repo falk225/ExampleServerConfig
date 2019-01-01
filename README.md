@@ -10,12 +10,19 @@ http://54.236.86.84.xip.io/
 #### Linux (apt-get)
 - finger
 - mod-wsgi
-- libapache2-mos-wsgi-py3
+- libapache2-mod-wsgi-py3
 - apache2
 - python3-pip
 - python3-venv
 - postgresql
 - postgresql-contrib
+
+#### Use venv
+```
+sudo apt-get install python3-venv
+sudo python3 -m venv venv
+. venv/bin/activate
+```
 
 #### Python (pip)
 - flask
@@ -30,6 +37,7 @@ http://54.236.86.84.xip.io/
 - Change SSH port from 22 to 2200
 - PermitRootLogin no
 - PasswordAuthentication no
+``` sudo service ssh restart```
 
 #### Uncomplicated Firewall (UFW)
 - default deny incoming
@@ -41,10 +49,17 @@ http://54.236.86.84.xip.io/
 
 #### Create/Provision grader user
 - adduser grader
-- cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader
-- edit newly created grader file and change the user to grader
-- add .ssh/authorized_keys file/path
-- create key using ssh-keygen and add to authorized_keys
+- create /etc/sudoers.d/grader with code
+``` 
+# User rules for grader
+grader ALL=(ALL) NOPASSWD:ALL
+```
+- create .ssh/authorized_keys 
+- create key using ssh-keygen and add .pub to authorized_keys
+```
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+```
 
 #### /etc/apache2/site-enabled/000-default.conf
 Add to <VirtualHost>
