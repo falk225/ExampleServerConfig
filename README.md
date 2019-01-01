@@ -23,6 +23,7 @@ sudo apt-get install python3-venv
 sudo python3 -m venv venv
 . venv/bin/activate
 ```
+- set python-home=your/venv/path in WSGIDaemonProcess
 
 #### Python (pip)
 - flask
@@ -32,7 +33,9 @@ sudo python3 -m venv venv
 - google_auth_oauthlib
 - cryptography --upgrade
 - psycopg2
+
 ### Configurations
+
 #### /etc/ssh/sshd_config
 - Change SSH port from 22 to 2200
 - PermitRootLogin no
@@ -65,6 +68,10 @@ chmod 600 .ssh/authorized_keys
 Add to <VirtualHost>
 ```
         WSGIDaemonProcess ItemCatalog threads=5 python-home=/var/www/catalog/venv home=/var/www/catalog/ItemCatalog
+
+        WSGIProcessGroup ItemCatalog
+        WSGIApplicationGroup %{GLOBAL}
+
         WSGIScriptAlias / /var/www/wsgi-scripts/run.wsgi
         <Directory /var/www/wsgi-scripts>
             <IfVersion < 2.4>
@@ -103,15 +110,26 @@ Allow
 - Custom TCP 2200
 
 #### Postgresql Config
-- add flaskdb as psql role
-- create itemcatalog database
-- initialize flaskdb with password
-- run populate.py with flaskdb to populate with demo data
+```
+sudo -u postgres psql postgres
+=# create database itemcatalog;
+sudo -u postgres createuser --interactive
+sudo adduser itemcatalog
+sudo -u itemcatalog psql itemcatalog
+\password
+```
+SQLAlchemy Database URI ='postgresql://psql_role:psql_role_password@localhost:5432/psql_database_name'
+- run populate.py to populate with demo data
 
 ### Resources
 http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/firstconnect.html
+
 https://www.compose.com/articles/using-postgresql-through-sqlalchemy/
+
 https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps#step-four-%E2%80%93-configure-and-enable-a-new-virtual-host
+
 https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04
+
 https://docs.sqlalchemy.org/en/latest/core/engines.html
